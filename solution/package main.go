@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -5,29 +6,41 @@ import (
 	"math"
 )
 
-type Krug struct{
-	Radius float64
-}
-type Kvadrat struct{
-	Visota float64
-	Shirirna float64
-}
-type Shape interface{
+
+type Shape interface {
 	Area() float64
 }
-func (k Krug) Area() float64{
-	return math.Pi * k.Radius * k.Radius
+
+type Circle struct {
+	Radius float64 
 }
-func (k Kvadrat) Area() float64{
-	return k.Visota * k.Shirirna
+
+type Rectangle struct {
+	Width  float64 
+	Height float64 
 }
-func main(){
-krug:=Krug{5}
-kvadrat:=Kvadrat{5, 6}
-var shape1 Shape = krug
-var shape2 Shape = kvadrat
-fmt.Println("Площадь круга:", shape1.Area() )
-fmt.Println("Площадь круга:", shape2.Area() )
+
+
+func (c Circle) Area() float64 {
+	return math.Pi * c.Radius * c.Radius
+}
+
+
+func (r Rectangle) Area() float64 {
+	return r.Width * r.Height
+}
+
+func main() {
+	
+	circle := Circle{Radius: 5}
+	rectangle := Rectangle{Width: 5, Height: 5}
+
+	
+	var shape1 Shape = circle
+	var shape2 Shape = rectangle
+
+	fmt.Println("Площадь круга:", shape1.Area())
+	fmt.Println("Площадь прямоугольника:", shape2.Area()) 
 }
 
 
